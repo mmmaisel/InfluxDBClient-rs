@@ -16,6 +16,10 @@ pub enum Error {
     RetentionPolicyDoesNotExist(String),
     /// Some error on build url or io.
     Communication(String),
+    /// Some error while parsing influx response.
+    DataError(String),
+    /// The sepcified series does not exist
+    SeriesDoesNotExist(String),
     /// Some other error, I don't expect
     Unknow(String),
 }
@@ -28,6 +32,8 @@ impl fmt::Display for Error {
             Error::DataBaseDoesNotExist(ref t) => write!(f, "{}", t),
             Error::RetentionPolicyDoesNotExist(ref t) => write!(f, "{}", t),
             Error::Communication(ref t) => write!(f, "{}", t),
+            Error::DataError(ref t) => write!(f, "{}", t),
+            Error::SeriesDoesNotExist(ref t) => write!(f, "{}", t),
             Error::Unknow(ref t) => write!(f, "{}", t),
         }
     }
@@ -53,6 +59,8 @@ impl StdError for Error {
             Error::DataBaseDoesNotExist(ref t) => t,
             Error::RetentionPolicyDoesNotExist(ref t) => t,
             Error::Communication(ref t) => t,
+            Error::DataError(ref t) => t,
+            Error::SeriesDoesNotExist(ref t) => t,
             Error::Unknow(ref t) => t,
         }
     }

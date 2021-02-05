@@ -69,3 +69,5 @@ pub use error::Error;
 pub use keys::{ChunkedQuery, Node, Point, Points, Precision, Query, Series, Value};
 
 pub use reqwest;
+
+pub use influx_db_client_derive::InfluxData;
